@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bat : MonoBehaviour
 {
     [SerializeField] float targetY;
-
+    
     //Vector3 upPosition;
     //Vector3 downPosition;
 
@@ -19,9 +19,11 @@ public class Bat : MonoBehaviour
 
     void Update()
     {
-        float y = Mathf.PingPong(Time.time, targetY) - 1;
+        if (GameManager.Instance.State == false)
+        {
+            float y = Mathf.PingPong(Time.time, targetY) - 1;
 
-        transform.position = new Vector3(transform.position.x, y, transform.position.z);
-
+            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+        }
     }
 }
