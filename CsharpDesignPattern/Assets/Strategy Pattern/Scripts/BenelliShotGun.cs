@@ -6,16 +6,4 @@ public class BenelliShotGun : Weapon
     {
         Debug.Log("BenelliShotGun Attack");
     }
-
-
-    void Start()
-    {
-
-    }
-
-
-    void Update()
-    {
-
-    }
 }

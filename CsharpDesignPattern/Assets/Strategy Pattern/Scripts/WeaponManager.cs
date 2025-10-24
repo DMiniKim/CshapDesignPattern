@@ -6,30 +6,35 @@ public class WeaponManager : MonoBehaviour
 {
 
     [SerializeField] List<Weapon> weaponList;
+    Vector3 bulletPoint;
     int currentWeapon = 0;
+    
 
     private void Start()
     {
-                
+        weaponList[currentWeapon].gameObject.SetActive(true);        
     }
     private void Update()
     {
-        Shot();       
+        Shot();
+        ChangeShotGun();
     }
 
     void Shot()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            weaponList[currentWeapon].Attack();
+            weaponList[currentWeapon].Attack();            
         }
     }
     void ChangeShotGun()
     {
-        if (!Input.GetKeyDown(KeyCode.Space))            
+        if (Input.GetKeyDown(KeyCode.Space))            
         {
+            weaponList[currentWeapon].gameObject.SetActive(false);
             currentWeapon++; 
-            currentWeapon %= weaponList.Count;
+            currentWeapon = currentWeapon % weaponList.Count;
+            weaponList[currentWeapon].gameObject.SetActive(true);
         }
 
     }
