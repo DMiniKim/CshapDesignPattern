@@ -16,9 +16,9 @@ public class TimeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.Subcribe(State.START, Execute);
-        EventManager.Subcribe(State.PAUSE, Pause);
-        EventManager.Subcribe(State.EXIT, FinishedGame);
+        EventManager.Subcribe(Condition.START, Execute);
+        EventManager.Subcribe(Condition.PAUSE, Pause);
+        EventManager.Subcribe(Condition.EXIT, FinishedGame);
 
     }
 
@@ -43,7 +43,7 @@ public class TimeManager : MonoBehaviour
         {
             if(time <= 0)
             {
-                EventManager.Publish(State.EXIT);
+                EventManager.Publish(Condition.EXIT);
                 yield break;
             }
             time -= Time.deltaTime;
@@ -61,8 +61,8 @@ public class TimeManager : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.Unsubcribe(State.START, Execute);
-        EventManager.Unsubcribe(State.PAUSE, Pause);
-        EventManager.Unsubcribe(State.EXIT, FinishedGame);
+        EventManager.Unsubcribe(Condition.START, Execute);
+        EventManager.Unsubcribe(Condition.PAUSE, Pause);
+        EventManager.Unsubcribe(Condition.EXIT, FinishedGame);
     }
 }

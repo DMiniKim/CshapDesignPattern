@@ -16,15 +16,15 @@ public class Field : MonoBehaviour
     }
     private void OnEnable()
     {
-        EventManager.Subcribe(State.START, AnimationAble);
-        EventManager.Subcribe(State.PAUSE, AnimationDisable);
-        EventManager.Subcribe(State.EXIT, EndGame);
+        EventManager.Subcribe(Condition.START, AnimationAble);
+        EventManager.Subcribe(Condition.PAUSE, AnimationDisable);
+        EventManager.Subcribe(Condition.EXIT, EndGame);
     }
     private void OnDisable()
     {
-        EventManager.Unsubcribe(State.START, AnimationAble);
-        EventManager.Unsubcribe(State.PAUSE, AnimationDisable);
-        EventManager.Unsubcribe(State.EXIT, EndGame);
+        EventManager.Unsubcribe(Condition.START, AnimationAble);
+        EventManager.Unsubcribe(Condition.PAUSE, AnimationDisable);
+        EventManager.Unsubcribe(Condition.EXIT, EndGame);
 
     }
 

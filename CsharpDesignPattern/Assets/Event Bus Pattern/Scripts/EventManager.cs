@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
-public enum State
+public enum Condition
 {
     START,
     PAUSE,
@@ -12,10 +12,10 @@ public enum State
 
 public static class EventManager
 {
-    private static Dictionary<State, Action> eventBus = new();
+    private static Dictionary<Condition, Action> eventBus = new();
 
 
-    public static void Subcribe(State state, Action action)
+    public static void Subcribe(Condition state, Action action)
     {
         if (eventBus.ContainsKey(state))   // 키가 있다면 
         {
@@ -27,14 +27,14 @@ public static class EventManager
         }
 
     }
-    public static void Unsubcribe(State state, Action action)
+    public static void Unsubcribe(Condition state, Action action)
     {
         if (eventBus.ContainsKey(state))
         {
             eventBus[state] -= action;
         }
     }
-    public static void Publish(State state)
+    public static void Publish(Condition state)
     {
         if (eventBus.TryGetValue(state, out var action))
         {

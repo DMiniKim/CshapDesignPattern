@@ -1,38 +1,32 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 public class Character : MonoBehaviour
-{
-    [SerializeField] int x;
-    [SerializeField] float z;
-    [SerializeField] Animator animator;
+{   
+    [SerializeField] public Animator animator;
+
+    State state;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();        
+    }
+    private void Start()
+    {
+        state = new Idle();
     }
     private void Update()
+    {             
+        state.Execute(this);
+    }    
+    
+    public void SetState(State s)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Pickup();
-        }
-        Walk();
-    }
-    public void Walk()
-    {
-        x = (int)Input.GetAxisRaw("Horizontal");
-        animator.SetInteger("X", x);
-        z = Input.GetAxis("Vertical");
-    }
-    public void Pickup()
-    {       
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Pick up") ||
-            animator.IsInTransition(0))
-        {
-            return;
-        }
-        animator.SetTrigger("Pick up");
+        state.Exit(this);
 
+        this.state = s;
+
+        state.Enter(this);
     }
 }

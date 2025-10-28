@@ -5,11 +5,11 @@ public class Publisher : MonoBehaviour
     
     void Start()
     {
-        EventManager.Publish(State.START);
+        EventManager.Publish(Condition.START);
     }
     public void Pause()
     {
-        EventManager.Publish(State.PAUSE);
+        EventManager.Publish(Condition.PAUSE);
     }
 
 }
